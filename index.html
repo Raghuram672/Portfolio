@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raghuram - Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header id="header">
+        <nav>
+            <div class="logo">
+                <a href="#home">Raghuram</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="controls">
+                 <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle Dark Mode">
+                    <i class="fas fa-moon icon-moon"></i>
+                    <i class="fas fa-sun icon-sun"></i>
+                </button>
+                 <button
+                    class="burger"
+                    type="button"
+                    aria-label="Toggle navigation menu"
+                    aria-controls="primary-navigation"
+                    aria-expanded="false"
+                >
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="section full-height hero">
+             <div class="animated-gradient-bg"></div>
+             <div class="hero-overlay"></div> 
+            <div class="hero-content">
+                <h1 class="hero-title">Hi, I'm Raghuram</h1>
+                <p class="hero-subtitle">Associate Full Stack Developer</p>
+                <a href="#experience" class="cta-button hero-cta">View My Work Experience</a>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="images/profile-pic.jpg" alt="Raghuram - Profile Picture">
+                    </div>
+                    <div class="about-text">
+                        <p>I’m passionate about <strong>backend development</strong> and have built a solid foundation in software engineering concepts.</p>
+                        
+                        <h3 class="sub-heading">Core Competencies</h3>
+                        <ul class="feature-list">
+                          <li>Strong programming skills in Java, Python, and C</li>
+                          <li>Good understanding of data structures and algorithms</li>
+                          <li>Familiar with software development methodologies</li>
+                          <li>Quick learner, adaptable to new technologies</li>
+                        </ul>
+                        
+                        <h3 class="sub-heading">Beyond the Code</h3>
+                        <ul class="feature-list">
+                          <li>Competing in typing competitions</li>
+                          <li>Cycling</li>
+                          <li>Cooking</li>
+                        </ul>
+                                                
+                         <h3 class="sub-heading">Technical Skills</h3>
+                         <ul class="skills-list">
+                            <li>Java</li>
+                            <li>Spring Boot</li>
+                            <li>Data Structures</li>
+                            <li>Algorithms</li>
+                            <li>Docker</li>
+                            <li>MySQL</li>
+                            <li>Python</li>
+                            <li>C Programming</li>
+                            <li>JavaScript</li>
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                         </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section alt-bg">
+            <div class="container experience-container">
+                <h2 class="section-title">Work Experience</h2>
+                <p class="section-subtitle">My professional journey and key contributions.</p>
+
+                <div class="timeline-wrapper">
+                    <div class="timeline-nav">
+                        <div class="timeline-line-bg"></div> 
+                        <div class="timeline-line-active"></div>
+                        <button class="timeline-button active" data-target="job1">
+                            <span class="timeline-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </span>
+                            <span class="company-name">Sclera</span>
+                        </button>
+                    </div>
+
+                    <div class="timeline-content">
+                        <div class="timeline-pane active" id="job1">
+                            <h3>Associate Full Stack Developer <span class="company-highlight">@Sclera</span></h3>
+                            <div class="timeline-meta">
+                                <span class="date"><i class="far fa-calendar-alt"></i> Sep 2023 - Present</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Mangalore, India</span>
+                            </div>
+                            <ul class="responsibilities">
+                                <li><i class="fas fa-check-circle"></i> Enabled log encryption in MySQL Dockerfile; implemented REST at encryption via built-in plugins.</li>
+                                <li><i class="fas fa-check-circle"></i> Researched and supported MySQL to SQLite migration, focusing on encryption and binary logs.</li>
+                                <li><i class="fas fa-check-circle"></i> Enhanced offline inspection module with SQLite JSON extensions and triggers for delta generation.</li>
+                                <li><i class="fas fa-check-circle"></i> Integrated offline inspection backend into the main Sclera codebase for seamless functionality.</li>
+                                <li><i class="fas fa-check-circle"></i> Developed a Proof of Concept (POC) for Android & iOS GUI migration, including backend & RSYNC.</li>
+                                <li><i class="fas fa-check-circle"></i> Contributed to L4 Proxy Cloud backend development, improving infrastructure.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section"> 
+            <div class="container small-container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's connect! Drop me a message or find me online.</p>
+                <form id="contact-form" action="MAILTO:your.email@example.com" method="post" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="Your Email Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Your Message"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button form-submit-button">Send Message</button>
+                </form>
+                 <div class="contact-info">
+                    <p>Connect with me:</p>
+                    <a href="mailto:raghuram64375@gmail.com" class="social-link" title="Email Raghuram"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="https://www.linkedin.com/in/raghuram-/" target="_blank" class="social-link" title="LinkedIn Profile"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://www.geeksforgeeks.org/user/raghuram_/" target="_blank" class="social-link" title="GeeksforGeeks Profile"><i class="fas fa-code-branch"></i> GFG</a>
+                    <a href="https://leetcode.com/u/Raghuram_/" target="_blank" class="social-link" title="LeetCode Profile"><i class="fas fa-code"></i> LeetCode</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="footer">
+        <p>&copy; <span id="year"></span> Raghuram.<i class="fas fa-heart" style="color: var(--accent-vibrant);"></i>.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
