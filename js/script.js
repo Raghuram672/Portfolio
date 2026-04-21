@@ -35,19 +35,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const activateNavLink = () => {
         let current = '';
         const scrollY = window.pageYOffset;
+        const viewportProbe = scrollY + headerHeight + (window.innerHeight * 0.35);
         const sectionsNodeList = document.querySelectorAll('section[id]'); 
         const navLinksNodeList = document.querySelectorAll('.nav-links a'); 
 
         sectionsNodeList.forEach(section => {
-            const sectionTop = section.offsetTop - headerHeight - 80; 
+            const sectionTop = section.offsetTop;
+            const sectionBottom = sectionTop + section.offsetHeight;
             const sectionId = section.getAttribute('id');
-            if (scrollY >= sectionTop) { 
+
+            if (viewportProbe >= sectionTop && viewportProbe < sectionBottom) {
                 current = sectionId;
             }
         });
-        if (sectionsNodeList.length > 0 && scrollY < sectionsNodeList[0].offsetTop - headerHeight - 80) {
-             current = 'home';
-         }
+
+        if (sectionsNodeList.length > 0 && !current) {
+            const firstSection = sectionsNodeList[0];
+            const lastSection = sectionsNodeList[sectionsNodeList.length - 1];
+            const pageBottom = scrollY + window.innerHeight;
+
+            if (scrollY < firstSection.offsetTop - headerHeight) {
+                current = firstSection.getAttribute('id');
+            } else if (pageBottom >= document.documentElement.scrollHeight - 2) {
+                current = lastSection.getAttribute('id');
+            }
+        }
+
         navLinksNodeList.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${current}`) {

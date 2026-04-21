@@ -7,9 +7,14 @@
 
 :root {
     /* --- Light Mode Colors --- */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f9faff; /* Slightly bluer white */
-    --bg-alt: #f0f4f8; /* Lighter blue-grey */
+    --bg-primary: #f8fbff;
+    --bg-secondary: #ffffff;
+    --bg-alt: #f4f8fc;
+    --page-wash: radial-gradient(circle at top, rgba(52, 152, 219, 0.08), transparent 38%),
+                 linear-gradient(180deg, #fbfdff 0%, #f6faff 48%, #f8fbff 100%);
+    --section-divider: rgba(52, 152, 219, 0.08);
+    --surface-soft: rgba(255, 255, 255, 0.72);
+    --surface-strong: rgba(255, 255, 255, 0.9);
     --text-primary: #1e2a3a; /* Darker blue-grey */
     --text-secondary: #4a5568; /* Mid blue-grey */
     --text-muted: #718096; /* Lighter blue-grey */
@@ -57,8 +62,13 @@
 /* --- Dark Mode Color Overrides --- */
 body.dark-mode {
     --bg-primary: #0f172a; /* Very Dark Blue */
-    --bg-secondary: #1e293b; /* Dark Blue */
-    --bg-alt: #334155;    /* Mid Dark Blue */
+    --bg-secondary: #162033;
+    --bg-alt: #1d2b42;
+    --page-wash: radial-gradient(circle at top, rgba(95, 168, 211, 0.14), transparent 34%),
+                 linear-gradient(180deg, #0c1424 0%, #0f172a 46%, #111c30 100%);
+    --section-divider: rgba(95, 168, 211, 0.12);
+    --surface-soft: rgba(22, 32, 51, 0.72);
+    --surface-strong: rgba(22, 32, 51, 0.92);
     --text-primary: #e2e8f0;  /* Light Grey-Blue */
     --text-secondary: #94a3b8; /* Grey-Blue */
     --text-muted: #64748b;    /* Darker Grey-Blue */
@@ -90,7 +100,11 @@ body.dark-mode {
 @media (prefers-color-scheme: dark) {
   body:not(.light-mode) { /* Apply only if user hasn't explicitly chosen light */
     /* (Copy dark mode variables here for OS preference) */
-    --bg-primary: #0f172a; --bg-secondary: #1e293b; --bg-alt: #334155;
+    --bg-primary: #0f172a; --bg-secondary: #162033; --bg-alt: #1d2b42;
+    --page-wash: radial-gradient(circle at top, rgba(95, 168, 211, 0.14), transparent 34%), linear-gradient(180deg, #0c1424 0%, #0f172a 46%, #111c30 100%);
+    --section-divider: rgba(95, 168, 211, 0.12);
+    --surface-soft: rgba(22, 32, 51, 0.72);
+    --surface-strong: rgba(22, 32, 51, 0.92);
     --text-primary: #e2e8f0; --text-secondary: #94a3b8; --text-muted: #64748b;
     --accent-primary: #5fa8d3; --accent-secondary: #60d394; --accent-tertiary: #ffd166; --accent-vibrant: #ef6351;
     --border-color: #334155;
@@ -116,6 +130,8 @@ body {
     font-weight: 400; /* Default weight */
     line-height: 1.75; /* Increased for readability */
     background-color: var(--bg-primary);
+    background-image: var(--page-wash);
+    background-attachment: fixed;
     color: var(--text-primary);
     transition: background-color var(--transition-speed) 0.05s, color var(--transition-speed) 0.05s;
     -webkit-font-smoothing: antialiased;
@@ -210,8 +226,22 @@ ul { list-style: none; }
 .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
 .small-container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
 
-.section { padding: 6rem 0; position: relative; overflow: hidden; }
-.alt-bg { background-color: var(--bg-alt); }
+.section {
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+}
+.section:not(.hero)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 5%;
+    width: 90%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--section-divider), transparent);
+}
+.alt-bg { background: transparent; }
 .full-height { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
 
 .cta-button {
@@ -332,7 +362,7 @@ body.dark-mode .dark-mode-toggle .icon-moon { transform: translateY(-100%) scale
 .hero {
     text-align: center; position: relative; 
     padding-top: var(--header-height); overflow: hidden;
-    background-color: var(--bg-primary); /* Fallback if gradient doesn't load */
+    background-color: transparent;
 }
 .hero-overlay { /* Added overlay for better text legibility on gradient */
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -421,8 +451,7 @@ body.dark-mode .skills-list li {
 }
 
 /* --- Work Experience Section Styles --- */
-#experience { border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-body.dark-mode #experience { background-color: var(--bg-primary); } /* Match primary dark for contrast */
+#experience, #contact { border: 0; }
 
 .experience-container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
 .timeline-wrapper { display: flex; gap: 2.5rem; margin-top: 3.5rem; position: relative; }
@@ -511,13 +540,15 @@ body.dark-mode .timeline-button.active {
     transform: translateX(20px) scale(0.98); /* Slide from right and slight scale */
     transition: opacity 0.4s var(--transition-speed), transform 0.4s var(--transition-speed);
     pointer-events: none; visibility: hidden; 
-    background-color: var(--bg-primary);
+    background-color: var(--surface-soft);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     padding: 1.5rem;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow-medium);
     border: 1px solid var(--border-color);
 }
-body.dark-mode .timeline-pane { background-color: var(--bg-secondary); }
+body.dark-mode .timeline-pane { background-color: var(--surface-soft); }
 
 .timeline-pane.active {
     opacity: 1; transform: translateX(0) scale(1);
@@ -558,14 +589,14 @@ body.dark-mode .timeline-pane { background-color: var(--bg-secondary); }
     border: 1px solid var(--input-border);
     border-radius: var(--border-radius);
     font-family: var(--font-primary); font-size: 1rem;
-    background-color: var(--input-bg); 
+    background-color: var(--surface-strong);
     color: var(--text-primary); 
     transition: all var(--transition-speed-fast);
     box-shadow: var(--box-shadow-inset);
 }
 .form-group input:focus, .form-group textarea:focus {
     outline: none; border-color: var(--accent-primary);
-    background-color: var(--bg-primary); 
+    background-color: var(--bg-secondary);
     box-shadow: 0 0 0 3px var(--input-focus-glow), var(--box-shadow-soft);
 }
 .form-group textarea { min-height: 120px; resize: vertical; }
